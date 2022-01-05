@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "6c4bfae9-f3d4-4543-b1d5-20d3fda951c0",
+		"name": "ingVisya",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Refresh Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/revalidate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"revalidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test@email.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Success:\r\n{\r\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsInVzZXJfaWQiOiJoYXJpc2hAZW1haWwuY29tIiwic3RhdHVzIjoiQSIsImxhc3RfbG9naW4iOiIyMDIxLTAyLTE3VDAyOjQ4OjQ0LjAwMFoiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMi0xNFQxODoxNjo0OC4wMDBaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDItMTdUMDI6NDg6NDQuMDAwWiIsImlhdCI6MTYxMzUzMTA4MSwiZXhwIjoxNjEzNTMyNzYxfQ.6Uk2X-vmDbnkBLlmyz1vA6ierfQczIUeXxkTM83IgSE\",\r\n    \"access_token_timeout\": 1680,\r\n    \"access_token_type\": \"Bearer\",\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsInVzZXJfaWQiOiJoYXJpc2hAZW1haWwuY29tIiwic3RhdHVzIjoiQSIsImxhc3RfbG9naW4iOiIyMDIxLTAyLTE3VDAyOjQ4OjQ0LjAwMFoiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMi0xNFQxODoxNjo0OC4wMDBaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDItMTdUMDI6NDg6NDQuMDAwWiIsImlhdCI6MTYxMzUzMTA4MSwiZXhwIjoxNjEzNTMyODgxfQ.pJfTZpASMZxSUxdwrIObPmrKmnnE4NqaKKUesoPfXeg\",\r\n    \"refresh_token_timeout\": 1800,\r\n    \"refresh_token_type\": \"Bearer\"\r\n}\r\n\r\nInvalid Token:\r\n{\r\n    \"message\": \"Invalid token.\",\r\n    \"errcode\": 1006\r\n}\r\n\r\nExpired Token:\r\n{\r\n    \"message\": \"Token Expired.\",\r\n    \"errcode\": \"1006A\"\r\n}\r\n\r\nNo User:\r\n{\r\n    \"errcode\": 1002,\r\n    \"message\": \"User not found.\"\r\n}\r\n\r\nInactive/Blocked user:\r\n{\r\n    \"errcode\": \"1002A\",\r\n    \"message\": \"Invalid user or permitions mightbe blocked.\"\r\n}\r\n\r\n\r\nCORS Issue: (common for all apis)\r\n{\r\n    \"message\": \"Not allowed by CORS.\",\r\n    \"errcode\": 1003\r\n}\r\n\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/find/test2@email.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"find",
+								"test2@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test2@email.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test2@email.com\",\r\n    \"password\": \"WelcomE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/update/test2@email.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"update",
+								"test2@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/delete/test2@email.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"delete",
+								"test2@email.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATM",
+			"item": [
+				{
+					"name": "get all ATMs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/atm/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ATM",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": {\r\n        \"street\": \"Kondapur\",\r\n        \"housenumber\": \"53\",\r\n        \"postalcode\": \"5531 EH\",\r\n        \"city\": \"hyd\",\r\n        \"geoLocation\": {\r\n            \"lat\": \"51.36784\",\r\n            \"lng\": \"5.22107\"\r\n        }\r\n    },\r\n    \"distance\": 0,\r\n    \"openingHours\": [\r\n        {\r\n            \"dayOfWeek\": 2,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 3,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 4,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 5,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 6,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 7,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 1,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"10:00\",\r\n                    \"hourTo\": \"20:00\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"functionality\": \"Geldautomaat\",\r\n    \"type\": \"GELDMAAT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/atm/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search ATMs by city",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/atm/search/hyd",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"search",
+								"hyd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ATM by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/atm/get/atm_1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"get",
+								"atm_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update ATM",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": {\r\n        \"street\": \"Madhapur\",\r\n        \"housenumber\": \"53\",\r\n        \"postalcode\": \"5531 EH\",\r\n        \"city\": \"hyd\",\r\n        \"geoLocation\": {\r\n            \"lat\": \"51.36784\",\r\n            \"lng\": \"5.22107\"\r\n        }\r\n    },\r\n    \"distance\": 0,\r\n    \"openingHours\": [\r\n        {\r\n            \"dayOfWeek\": 2,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 3,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 4,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 5,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 6,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 7,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"08:00\",\r\n                    \"hourTo\": \"21:00\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"dayOfWeek\": 1,\r\n            \"hours\": [\r\n                {\r\n                    \"hourFrom\": \"10:00\",\r\n                    \"hourTo\": \"20:00\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"functionality\": \"Geldautomaat\",\r\n    \"type\": \"GELDMAAT\",\r\n    \"id\": \"atm202201058201049\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/atm/update/atm202201053202523",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"update",
+								"atm202201053202523"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ATM",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/atm/delete/atm202201057201519",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"atm",
+								"delete",
+								"atm202201057201519"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RawData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.ing.nl/api/locator/atms/",
+					"protocol": "https",
+					"host": [
+						"www",
+						"ing",
+						"nl"
+					],
+					"path": [
+						"api",
+						"locator",
+						"atms",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

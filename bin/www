@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const app = require('../app');
+const d2m = require('../helpers/d2m.helper')
+require('dotenv').config()
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+// var server = http.createServer(app);
+app.listen(port, (err) =>{
+  if(err){
+    console.log("Failed to start server.(error):", err)
+  }
+  else{
+    d2m.loadAtmData('atmdata.json').then((msg)=>{
+      console.log(msg);
+    }).catch((err)=>{
+      console.log('Faild to load data');
+      console.log(err);
+    });
+
+    d2m.loadUserData('users.json').then((msg)=>{
+      console.log(msg);
+    }).catch((err)=>{
+      console.log('Faild to load data');
+      console.log(err);
+    });
+
+    console.log("Server is up and running on: http://localhost:"+ port)
+  }
+})
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+// server.listen(port);
+// server.on('error', onError);
+// server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
