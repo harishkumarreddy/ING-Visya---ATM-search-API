@@ -12,8 +12,11 @@ ING Visya - ATM search API task project
     ```
         npm install
     ```
-4. Run selected command to start application.
-
+4. Run the migration to update sync the datat in to sysstem.
+    ```
+        npm run migrate
+    ```
+5. Run selected command to start application.
 
     Dev for auto detection to restrt the app services.
     ```
@@ -23,7 +26,7 @@ ING Visya - ATM search API task project
     ```
         npm start
     ```
-5. Run the test command for unit testing.
+6. Run the test command for unit testing.
     ```
         npm test
     ```
