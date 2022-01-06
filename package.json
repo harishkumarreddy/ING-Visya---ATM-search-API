@@ -1,7 +1,7 @@
 {
-  "name": "backend-merchantapp-main",
+  "name": "invisya",
   "version": "1.0.0",
-  "description": "All Merchent Application related APIs are addressed here.",
+  "description": "ATM finder",
   "main": "app.js",
   "scripts": {
     "start": "node bin/www",
